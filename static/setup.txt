@@ -2,31 +2,43 @@ page.headerData.1337 = COA
 page.headerData.1337.1 = TEXT
 page.headerData.1337.1.value = <link rel="stylesheet" href="{path:{$plugin.perfectlightbox.cssPath}}" type="text/css" media="screen,projection" />
 page.headerData.1337.1.insertData = 1
+
 [globalVar = LIT:mootools = {$plugin.perfectlightbox.libraryToUse}] AND [globalVar = LIT:1 = {$plugin.perfectlightbox.includeJSLibrarys}]
 page.headerData.1337.2 = TEXT
 page.headerData.1337.2.value = <script type="text/javascript" src="{path:{$plugin.perfectlightbox.mootoolsPath}}"></script>	
 page.headerData.1337.2.insertData = 1
 [global]
+
 [globalVar = LIT:mootools = {$plugin.perfectlightbox.libraryToUse}]
 page.headerData.1337.3 = TEXT
 page.headerData.1337.3.value = <script type="text/javascript" src="{path:{$plugin.perfectlightbox.slimboxPath}}"></script>
 page.headerData.1337.3.insertData = 1
 page.headerData.1337.4 = COA
 page.headerData.1337.4.1 = TEXT
-page.headerData.1337.4.1.value = window.addEvent('domready', Lightbox.init.bind(Lightbox,{resizeSpeed: {$plugin.perfectlightbox.resizeSpeed}, animate: {$plugin.perfectlightbox.animate}, overlayOpacity: {$plugin.perfectlightbox.overlayOpacity}, allowSave: {$plugin.perfectlightbox.allowSave}, slideshowAutoplay: {$plugin.perfectlightbox.slideshowAutoplay}, slideshowInterval: {$plugin.perfectlightbox.slideshowInterval}, slideshowAutoclose: {$plugin.perfectlightbox.slideshowAutoclose},
-page.headerData.1337.4.2 = TEXT
-page.headerData.1337.4.2.value = lllImage: '{LLL:EXT:perfectlightbox/locallang.xml:image}', lllOf: '{LLL:EXT:perfectlightbox/locallang.xml:of}'}));
-page.headerData.1337.4.2.insertData = 1
+page.headerData.1337.4.1.value (
+
+	SlimboxOptions.resizeSpeed = {$plugin.perfectlightbox.resizeSpeed};
+	SlimboxOptions.overlayOpacity = {$plugin.perfectlightbox.overlayOpacity};
+	SlimboxOptions.loop = {$plugin.perfectlightbox.loopImages};
+	SlimboxOptions.allowSave = {$plugin.perfectlightbox.allowSave};
+	SlimboxOptions.slideshowAutoplay = {$plugin.perfectlightbox.slideshowAutoplay};
+	SlimboxOptions.slideshowInterval = {$plugin.perfectlightbox.slideshowInterval};
+	SlimboxOptions.slideshowAutoclose = {$plugin.perfectlightbox.slideshowAutoclose};
+	SlimboxOptions.counterText = '{LLL:EXT:perfectlightbox/locallang.xml:image} ###x### {LLL:EXT:perfectlightbox/locallang.xml:of} ###y###';
+)
+page.headerData.1337.4.1.insertData = 1
 page.headerData.1337.4.stdWrap.dataWrap = <script type="text/javascript">|</script>
 [global]
+
 [globalVar = LIT:protaculous = {$plugin.perfectlightbox.libraryToUse}] AND [globalVar = LIT:1 = {$plugin.perfectlightbox.includeJSLibrarys}]
 page.headerData.1337.5 = TEXT
 page.headerData.1337.5.value (
 <script type="text/javascript" src="{path:{$plugin.perfectlightbox.prototypePath}}"></script>
-<script type="text/javascript" src="{path:{$plugin.perfectlightbox.scriptaculousPath}}?load=effects"></script>
+<script type="text/javascript" src="{path:{$plugin.perfectlightbox.scriptaculousPath}}?load=effects,builder"></script>
 )
 page.headerData.1337.5.insertData = 1
 [global]
+
 [globalVar = LIT:protaculous = {$plugin.perfectlightbox.libraryToUse}]
 page.headerData.1337.6 = TEXT
 page.headerData.1337.6.value = <script type="text/javascript" src="{path:{$plugin.perfectlightbox.lightboxPath}}"></script>
@@ -34,19 +46,47 @@ page.headerData.1337.6.insertData = 1
 page.headerData.1337.7 = COA
 page.headerData.1337.7.1 = TEXT
 page.headerData.1337.7.1.value (
-	var borderSize = {$plugin.perfectlightbox.lbBorderSize};
-	var resizeSpeed = {$plugin.perfectlightbox.resizeSpeed};
-	var animate = {$plugin.perfectlightbox.animate};
-	var overlayOpacity = {$plugin.perfectlightbox.overlayOpacity};
-	var allowSave = {$plugin.perfectlightbox.allowSave};
-	var enableSlideshowAutoplay = {$plugin.perfectlightbox.slideshowAutoplay};
-	var slideshowAutoclose = {$plugin.perfectlightbox.slideshowAutoclose};
-	var slideshowInterval = {$plugin.perfectlightbox.slideshowInterval};
-	var lllImage = '{LLL:EXT:perfectlightbox/locallang.xml:image}';
-	var lllOf = '{LLL:EXT:perfectlightbox/locallang.xml:of}';
+
+	LightboxOptions.borderSize = {$plugin.perfectlightbox.lbBorderSize};
+	LightboxOptions.resizeSpeed = {$plugin.perfectlightbox.resizeSpeed};
+	LightboxOptions.overlayOpacity = {$plugin.perfectlightbox.overlayOpacity};
+	LightboxOptions.loop = {$plugin.perfectlightbox.loopImages};
+	LightboxOptions.allowSave = {$plugin.perfectlightbox.allowSave};
+	LightboxOptions.slideshowAutoplay = {$plugin.perfectlightbox.slideshowAutoplay};
+	LightboxOptions.slideshowInterval = {$plugin.perfectlightbox.slideshowInterval};
+	LightboxOptions.slideshowAutoclose = {$plugin.perfectlightbox.slideshowAutoclose};
+	LightboxOptions.labelImage = '{LLL:EXT:perfectlightbox/locallang.xml:image}';
+	LightboxOptions.labelOf = '{LLL:EXT:perfectlightbox/locallang.xml:of}';
 )
 page.headerData.1337.7.1.insertData = 1
 page.headerData.1337.7.stdWrap.dataWrap = <script type="text/javascript">|</script>
+[global]
+
+[globalVar = LIT:jquery = {$plugin.perfectlightbox.libraryToUse}] AND [globalVar = LIT:1 = {$plugin.perfectlightbox.includeJSLibrarys}]
+page.headerData.1337.8 = TEXT
+page.headerData.1337.8.value = <script type="text/javascript" src="{path:{$plugin.perfectlightbox.jqueryPath}}"></script>	
+page.headerData.1337.8.insertData = 1
+[global]
+
+[globalVar = LIT:jquery = {$plugin.perfectlightbox.libraryToUse}]
+page.headerData.1337.9 = TEXT
+page.headerData.1337.9.value = <script type="text/javascript" src="{path:{$plugin.perfectlightbox.slimbox2Path}}"></script>
+page.headerData.1337.9.insertData = 1
+page.headerData.1337.10 = COA
+page.headerData.1337.10.1 = TEXT
+page.headerData.1337.10.1.value (
+
+	SlimboxOptions.resizeSpeed = {$plugin.perfectlightbox.resizeSpeed};
+	SlimboxOptions.overlayOpacity = {$plugin.perfectlightbox.overlayOpacity};
+	SlimboxOptions.loop = {$plugin.perfectlightbox.loopImages};
+	SlimboxOptions.allowSave = {$plugin.perfectlightbox.allowSave};
+	SlimboxOptions.slideshowAutoplay = {$plugin.perfectlightbox.slideshowAutoplay};
+	SlimboxOptions.slideshowInterval = {$plugin.perfectlightbox.slideshowInterval};
+	SlimboxOptions.slideshowAutoclose = {$plugin.perfectlightbox.slideshowAutoclose};
+	SlimboxOptions.counterText = '{LLL:EXT:perfectlightbox/locallang.xml:image} ###x### {LLL:EXT:perfectlightbox/locallang.xml:of} ###y###';
+)
+page.headerData.1337.10.1.insertData = 1
+page.headerData.1337.10.stdWrap.dataWrap = <script type="text/javascript">|</script>
 [global]
 
 
@@ -114,11 +154,14 @@ tt_content.image.20.1.imageLinkWrap.typolink.userFunc.ignoreUid = 1
 [global]
 
 ### If dam_ttnews is also loaded do not include the imageMarkerFunc
-[globalString = TYPO3_LOADED_EXT|tt_news|type=*] AND [globalString = TYPO3_LOADED_EXT|dam_ttnews|type=*]
-	### Do nothing
-[else]
-	plugin.tt_news.imageMarkerFunc = tx_perfectlightbox->ttnewsImageMarkerFunc
-[global]
+#[globalString = TYPO3_LOADED_EXT|tt_news|type=*] AND [globalString = TYPO3_LOADED_EXT|dam_ttnews|type=*]
+### Do nothing
+#[else]
+plugin.tt_news.imageMarkerFunc = tx_perfectlightbox->user_ImageMarkerFunc
+#[global]
+
+##### BEN: Due to the latest changes in tt_news the imageMarkerFunc isn't working anymore (Rupert added a new function to process
+##### SINGLE differently (optionsplit). So everythings broken for now.
 
 temp.imageLinkWrap = 1
 temp.imageLinkWrap {
@@ -154,4 +197,10 @@ plugin.tt_news.displayList.image.imageLinkWrap < temp.imageLinkWrap
 [globalVar = LIT:1 = {$plugin.perfectlightbox.ttnews.enableLatest}]
 plugin.tt_news.displayLatest.image.imageLinkWrap >
 plugin.tt_news.displayLatest.image.imageLinkWrap < temp.imageLinkWrap
+[global]
+
+### 
+[globalVar = LIT:1 = {$plugin.perfectlightbox.bodyScripts}]
+page.1337 < page.headerData.1337
+page.headerData.1337 >
 [global]
