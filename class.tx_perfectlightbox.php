@@ -57,7 +57,7 @@ class tx_perfectlightbox {
 			$lightboxParams = 'rel="lightbox[presentlb'.$uid.'slideshow]"';
 		}
 		if ($this->cObj->data['image_link']!='') {
-			$lightboxParams = '';
+			return $content["TAG"];
 		}
         return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
     }
@@ -82,7 +82,7 @@ class tx_perfectlightbox {
 			$lightboxParams = 'rel="lightbox[presentlb'.$uid.'slideshow]"';
 		}
 		if ($this->cObj->data['image_link']!='') {
-			$lightboxParams = '';
+			return $content["TAG"];
 		}
         return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
     }
@@ -90,63 +90,100 @@ class tx_perfectlightbox {
 	/**
 	 * Example function that sets the register var "IMAGE_NUM_CURRENT" to the the current image number.
 	 *
+	 * BEWARE: Since tt_news 3.0 this won't work until Rupert updates hooks for marker-processing
+	 *
 	 * @param	array		$paramArray: $markerArray and $config of the current news item in an array
 	 * @param	[type]		$conf: ...
 	 * @return	array		the processed markerArray
 	 */
-	function ttnewsImageMarkerFunc($paramArray,$conf) {	
+	 
+
+	function user_ImageMarkerFunc($paramArray,$conf) {
 		$markerArray = $paramArray[0];
 		$lConf = $paramArray[1];
 		$pObj = &$conf['parentObj'];
 		$row = $pObj->local_cObj->data;
-		$textRenderObj = $paramArray[2];
 	
 		$imageNum = isset($lConf['imageCount']) ? $lConf['imageCount']:1;
 		$imageNum = t3lib_div::intInRange($imageNum, 0, 100);
 		$theImgCode = '';
 		$imgs = t3lib_div::trimExplode(',', $row['image'], 1);
 		$imgsCaptions = explode(chr(10), $row['imagecaption']);
+		$imgsAltTexts = explode(chr(10), $row['imagealttext']);
+		$imgsTitleTexts = explode(chr(10), $row['imagetitletext']);
+
 		reset($imgs);
+
 		$cc = 0;
 		
-		if (((count($imgs) > 1 && $pObj->config['firstImageIsPreview'])||
-		(count($imgs) >= 1 && $pObj->config['forceFirstImageIsPreview'])) && 
-		//Thanks to Steffen Thierock for this hint
-		#$textRenderObj == 'displaySingle') {
-		$pObj->config['code'] == 'SINGLE') {
+		// BEN: We need to mark these items prior to arrayshifting
+		if (count($imgs) == 1 && 
+			$pObj->config['firstImageIsPreview'] && 
+			$pObj->config['code'] == 'SINGLE' && 
+			!$pObj->config['forceFirstImageIsPreview'])
+		{
+			$markedAsSpecial = 1;
+		}
+		// END.
+		
+		// remove first img from the image array in single view if the TSvar firstImageIsPreview is set
+		if ((	(count($imgs) > 1 && $pObj->config['firstImageIsPreview'])
+				||
+				(count($imgs) >= 1 && $pObj->config['forceFirstImageIsPreview'])
+			) && $pObj->config['code'] == 'SINGLE') {
 			array_shift($imgs);
 			array_shift($imgsCaptions);
+			array_shift($imgsAltTexts);
+			array_shift($imgsTitleTexts);
+		}		
+		// get img array parts for single view pages
+		if ($this->piVars[$pObj->config['singleViewPointerName']]) {
+			$spage = $this->piVars[$pObj->config['singleViewPointerName']];
+			$astart = $imageNum*$spage;
+			$imgs = array_slice($imgs,$astart,$imageNum);
+			$imgsCaptions = array_slice($imgsCaptions,$astart,$imageNum);
+			$imgsAltTexts = array_slice($imgsAltTexts,$astart,$imageNum);
+			$imgsTitleTexts = array_slice($imgsTitleTexts,$astart,$imageNum);
 		}
-	
+
 		while (list(, $val) = each($imgs)) {
 			if ($cc == $imageNum) break;
 			if ($val) {
-				$lConf['image.']['altText'] = '';
-				$lConf['image.']['altText'] = $lConf['image.']['altText'];
-				$lConf['image.']['file'] = 'uploads/pics/'.$val;
-				switch($lConf['imgAltTextField']) {
-					case 'image': $lConf['image.']['altText'] .= $val;
-					break;
-					case 'imagecaption': $lConf['image.']['altText'] .= $imgsCaptions[$cc];
-					break;
-					default: $lConf['image.']['altText'] .= $row[$lConf['imgAltTextField']];
+
+				$lConf['image.']['altText'] = $imgsAltTexts[$cc];
+				$lConf['image.']['titleText'] = $imgsTitleTexts[$cc];
+				$lConf['image.']['file'] = 'uploads/pics/' . $val;
+				
+				
+				
+				
+				// BEN: We check count of images >(=) 0 here because the array got shifted before!!! (See above)
+				if ((	(count($imgs) > 0 && $pObj->config['firstImageIsPreview'])
+								||
+								(count($imgs) >= 0 && $pObj->config['forceFirstImageIsPreview'])
+							) && $pObj->config['code'] == 'SINGLE') {
+					// BEN: Additionally we need to check our special case
+					
+					
+					if (count($imgs) == 1 && $markedAsSpecial) {
+						$GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $cc;
+					} else {
+						$GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $cc+1;
+					}
+				} else {
+					$GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $cc;
 				}
+				// END.
 			}
-			// These line are all that's needed!
-			if (((count($imgs) > 1 && $pObj->config['firstImageIsPreview'])||
-			(count($imgs) >= 1 && $pObj->config['forceFirstImageIsPreview'])) && 
-			$pObj->config['code'] == 'SINGLE') {
-				$GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $cc+1;
-			} else {
-				$GLOBALS['TSFE']->register['IMAGE_NUM_CURRENT'] = $cc;
-			}
-			// End
-			$theImgCode .= $pObj->local_cObj->wrap($pObj->local_cObj->IMAGE($lConf['image.']).$pObj->local_cObj->stdWrap($imgsCaptions[$cc], $lConf['caption_stdWrap.']),$lConf['imageWrapIfAny_'.$cc]);
+			
+			$theImgCode .= $pObj->local_cObj->IMAGE($lConf['image.']) . $pObj->local_cObj->stdWrap($imgsCaptions[$cc], $lConf['caption_stdWrap.']);
 			$cc++;
 		}
 		$markerArray['###NEWS_IMAGE###'] = '';
 		if ($cc) {
 			$markerArray['###NEWS_IMAGE###'] = $pObj->local_cObj->wrap(trim($theImgCode), $lConf['imageWrapIfAny']);
+		} else {
+			$markerArray['###NEWS_IMAGE###'] = $pObj->local_cObj->stdWrap($markerArray['###NEWS_IMAGE###'],$lConf['image.']['noImage_stdWrap.']);
 		}
 		return $markerArray;
 	}

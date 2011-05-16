@@ -21,5 +21,17 @@
 			<label index="of">de</label>
 			<label index="image">Image</label>
 		</languageKey>
+		<languageKey index="nl">
+			<label index="of">van</label>
+			<label index="image">Beeld</label>
+		</languageKey>
+		<languageKey index="it">
+			<label index="of">di</label>
+			<label index="image">Immagine</label>
+		</languageKey>
+		<languageKey index="no" type="array">
+		   <label index="of">av</label>
+		   <label index="image">Bilde</label>
+		</languageKey>
 	</data>
 </T3locallang>

@@ -34,8 +34,9 @@ $tempColumns = Array (
 
 t3lib_div::loadTCA("tt_content");
 t3lib_extMgm::addTCAcolumns("tt_content",$tempColumns,1);
-
-t3lib_extMgm::addStaticFile($_EXTKEY,'static/Perfect_Lightbox2/', 'Perfect Lightbox2');
+t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Perfect Lightbox');
 
 $GLOBALS['TCA']['tt_content']['palettes']['7']['showitem'] .= ', tx_perfectlightbox_activate, tx_perfectlightbox_imageset, tx_perfectlightbox_presentation, tx_perfectlightbox_slideshow';
+# BEN: Quickfix for TYPO3 4.5
+$GLOBALS['TCA']['tt_content']['palettes']['imagelinks']['showitem'] .= ', tx_perfectlightbox_activate, tx_perfectlightbox_imageset, tx_perfectlightbox_presentation, tx_perfectlightbox_slideshow';
 ?>
