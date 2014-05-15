@@ -32,6 +32,7 @@ class tx_perfectlightbox {
 
     function main($content,$conf) {
 		$uid = (1 == intval($conf['ignoreUid'])?'':$this->cObj->data['uid']);
+		$lightboxParams = '';
 		if ($this->cObj->data['tx_perfectlightbox_activate']==1) {
 			$lightboxParams = 'rel="lightbox"';
 		}
@@ -59,11 +60,12 @@ class tx_perfectlightbox {
 		if (trim($this->cObj->data['image_link'])!='') {
 			return $content["TAG"];
 		}
-        return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
+        return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>';
     }
 	
     function useGlobal($content,$conf) {
-		$uid = (1 == intval($conf['ignoreUid'])?'':$this->cObj->data['uid']);	
+		$uid = (1 == intval($conf['ignoreUid'])?'':$this->cObj->data['uid']);
+		$lightboxParams = '';	
 		if ($this->cObj->data['image_zoom']==1) {
 			$lightboxParams = 'rel="lightbox[lb'.$uid.']"';
 		}
@@ -84,7 +86,7 @@ class tx_perfectlightbox {
 		if (trim($this->cObj->data['image_link'])!='') {
 			return $content["TAG"];
 		}
-        return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
+        return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>';
     }
 	
 	/**
