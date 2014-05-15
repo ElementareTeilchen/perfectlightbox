@@ -56,7 +56,7 @@ class tx_perfectlightbox {
 		AND $this->cObj->data['tx_perfectlightbox_slideshow']==1) {
 			$lightboxParams = 'rel="lightbox[presentlb'.$uid.'slideshow]"';
 		}
-		if ($this->cObj->data['image_link']!='') {
+		if (trim($this->cObj->data['image_link'])!='') {
 			return $content["TAG"];
 		}
         return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
@@ -81,7 +81,7 @@ class tx_perfectlightbox {
 		AND $this->cObj->data['tx_perfectlightbox_slideshow']==1) {
 			$lightboxParams = 'rel="lightbox[presentlb'.$uid.'slideshow]"';
 		}
-		if ($this->cObj->data['image_link']!='') {
+		if (trim($this->cObj->data['image_link'])!='') {
 			return $content["TAG"];
 		}
         return '<a href="'.$content["url"].'"'.$content["targetParams"].' '.$content["aTagParams"].' '.$lightboxParams.'>'.$linkImg;
