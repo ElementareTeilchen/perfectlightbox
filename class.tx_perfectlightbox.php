@@ -107,7 +107,11 @@ class tx_perfectlightbox {
 		$row = $pObj->local_cObj->data;
 	
 		$imageNum = isset($lConf['imageCount']) ? $lConf['imageCount']:1;
-		$imageNum = t3lib_div::intInRange($imageNum, 0, 100);
+		if(class_exists('t3lib_utility_Math')) {
+			$imageNum = t3lib_utility_Math::forceIntegerInRange($imageNum, 0, 100);
+		} else {
+			$imageNum = t3lib_div::intInRange($imageNum, 0, 100);
+		}
 		$theImgCode = '';
 		$imgs = t3lib_div::trimExplode(',', $row['image'], 1);
 		$imgsCaptions = explode(chr(10), $row['imagecaption']);
