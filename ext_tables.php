@@ -31,8 +31,9 @@ $tempColumns = Array (
 	),
 );
 
-
-t3lib_div::loadTCA("tt_content");
+if (version_compare(TYPO3_branch, '6.1', '<')) {
+	t3lib_div::loadTCA("tt_content");
+}
 t3lib_extMgm::addTCAcolumns("tt_content",$tempColumns,1);
 t3lib_extMgm::addStaticFile($_EXTKEY,'static/', 'Perfect Lightbox');
 
