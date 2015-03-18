@@ -1,6 +1,8 @@
 /*!
-	Slimbox v2.04 - The ultimate lightweight Lightbox clone for jQuery
-	(c) 2007-2010 Christophe Beyls <http://www.digitalia.be>
+	Slimbox v2.05 - The ultimate lightweight Lightbox clone for jQuery
+	Edited by BEN for PerfectLightbox
+	Updated by Raffael Comi
+	(c) 2007-2013 Christophe Beyls <http://www.digitalia.be>
 	MIT-style license.
 */
 
@@ -28,7 +30,7 @@
 		// Append the Slimbox HTML code at the bottom of the document
 		$('body').append(
 			$([
-				overlay = $('<div id="sbOverlay" />')[0],
+				overlay = $('<div id="sbOverlay" />').click(close)[0],
 				center = $('<div id="sbCenter" />')[0],
 				bottomContainer = $('<div id="sbBottomContainer" />')[0]
 			]).css('display', 'none')
@@ -42,7 +44,7 @@
 		)[0];
 
 		bottom = $('<div id="sbBottom" />').appendTo(bottomContainer).append([
-			$('<a id="closeLink" href="#" />').add(overlay).click(close)[0],
+			$('<a id="closeLink" href="#" />').click(close)[0],
 			/* BEN: */
 			playLink = $('<a id="playLink" href="#" />').click(play)[0],
 			pauseLink = $('<a id="pauseLink" href="#" />').click(pause)[0],
@@ -149,6 +151,7 @@
 				if (filteredLinks[i] == link) startIndex = i;
 				filteredLinks[i] = linkMapper(filteredLinks[i], i);
 			}
+
 			return $.slimbox(filteredLinks, startIndex, _options);
 		});
 	};
@@ -191,7 +194,7 @@
 	}
 
 	function keyDown(event) {
-		var code = event.keyCode, fn = $.inArray;
+		var code = event.which, fn = $.inArray;
 		// Prevent default keyboard action (like navigating inside the page)
 		return (fn(code, options.closeKeys) >= 0) ? close()
 			: (fn(code, options.nextKeys) >= 0) ? next()
@@ -199,7 +202,7 @@
 			/* BEN: Toggle slideshow */
 			: (fn(code, options.slideshowKeys) >= 0) ? togglePlayPause()
 			/* :NEB */
-			: false;
+			: null;
 	}
 
 	function previous() {

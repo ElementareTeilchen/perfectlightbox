@@ -1,3 +1,7 @@
+15-03-18 Raffael Comi <raffael.comi(at)elementare-teilchen.de>
+
+	* Updated Slimbox to 2.0.5
+
 11-01-30 Benjamin Niediek  <ben(at)channel-eight.de>
 
 	* Fixed TCA-settings for TYPO3 4.5
@@ -38,13 +42,13 @@
 
 07-11-15 Benjamin Niediek  <ben(at)channel-eight.de>
 
-	* Added french translation (Thanks to Ismaël Bidau)
+	* Added french translation (Thanks to IsmaÃ«l Bidau)
 	* Added t3mootools.txt to allow T3Mootools to analyze for dependencies
 	* Small change in ext_tables.php
 
 07-10-25 Benjamin Niediek  <ben(at)channel-eight.de>
 
-	* Added danish translation (Thanks to Søren Thing Andersen)
+	* Added danish translation (Thanks to SÃ¸ren Thing Andersen)
 	* Captionsplit now works with dam_ttnews (Thanks to Erich Bircher for the necessary changes in his extension)
 	* Updated documentation
 

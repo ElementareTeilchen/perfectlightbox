@@ -45,8 +45,8 @@ plugin.perfectlightbox {
 	# cat=perfectlightbox/file/f07; type=file[js]; label= Path to JQuery: You can change this if you need to modify jquery.
 	jqueryPath = EXT:perfectlightbox/res/js/jquery.1.5.1.min.js
 	
-	# cat=perfectlightbox/file/f08; type=file[js]; label= Path to the Slimbox2 Script: WARNING: Refer to the original file at EXT:perfectlightbox/res/js/slimbox.2.0.4.js for the changes made in there (added localisation, presentation mode, slideshow, etc...)
-	slimbox2Path = EXT:perfectlightbox/res/js/slimbox.2.0.4.yui.js
+	# cat=perfectlightbox/file/f08; type=file[js]; label= Path to the Slimbox2 Script: WARNING: Refer to the original file at EXT:perfectlightbox/res/js/slimbox.2.0.5.custom.js for the changes made in there (added localisation, presentation mode, slideshow, etc...)
+	slimbox2Path = EXT:perfectlightbox/res/js/slimbox.2.0.5.custom.yui.js
 
 	# cat=perfectlightbox/dims/d1; type=int+; label= lightBox Max Image Width: Defines the maxwidth of the image shown in the Lightbox.
 	lightBoxMaxW = 900
